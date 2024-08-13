@@ -119,7 +119,7 @@ def process_and_train(gold_prices, economic_data):
     future_Inflation_Rate = st.number_input("Enter future inflation rate")
     future_Unemployment_Rate = st.number_input("Enter future Unemployment Rate")
     future_GDP = st.number_input("Enter future GDP")
-    future_Applied = st.number_input("Enter future Applied")
+    future_Applied = st.number_input("Enter future Tariff Rate")
 
     # Predict future gold price based on new economic data
     future_economic_data = np.array([[future_Inflation_Rate, future_Unemployment_Rate, future_GDP, future_Applied]])
