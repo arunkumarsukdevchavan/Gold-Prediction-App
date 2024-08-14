@@ -148,7 +148,7 @@ def app_page():
     )
 
     st.title("Gold Predicton App")
-    st.write("Welcome to the app!")
+    st.header("Welcome to the app!")
 
     # Add two CSV file uploaders
     st.header("Upload CSV files")
