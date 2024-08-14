@@ -32,7 +32,7 @@ def login_page():
         """
         <style>
         .stApp {
-            background-image: url('https://getwallpapers.com/wallpaper/full/b/e/0/1183587-gold-background-wallpaper-1920x1080-hd-for-mobile.jpg');
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20201026/pngtree-futuristic-shape-abstract-background-chemistry-technology-concept-for-website-image_438818.jpg');
             background-size: cover;
             background-position: center;
             padding: 5rem;
@@ -124,7 +124,7 @@ def process_and_train(gold_prices, economic_data):
     # Predict future gold price based on new economic data
     future_economic_data = np.array([[future_Inflation_Rate, future_Unemployment_Rate, future_GDP, future_Applied]])
     future_gold_price = model.predict(future_economic_data)
-    st.write(f'Predicted Gold Price: {future_gold_price[0]}')
+    st.header(f'Predicted Gold Price: {future_gold_price[0]}')
 
 # Main application page
 def app_page():
