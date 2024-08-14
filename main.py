@@ -132,7 +132,7 @@ def app_page():
         """
         <style>
         .stApp {
-            background-image: url('');
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20201026/pngtree-futuristic-shape-abstract-background-chemistry-technology-concept-for-website-image_438818.jpg');
             background-size: fit;
             background-position: center;
             padding: 5rem;
