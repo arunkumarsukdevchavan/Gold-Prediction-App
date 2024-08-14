@@ -32,7 +32,7 @@ def login_page():
         """
         <style>
         .stApp {
-            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20201026/pngtree-futuristic-shape-abstract-background-chemistry-technology-concept-for-website-image_438818.jpg');
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/back_our/20190620/ourmid/pngtree-beautiful-technology-website-business-poster-background-template-image_148436.jpg');
             background-size: cover;
             background-position: center;
             padding: 5rem;
