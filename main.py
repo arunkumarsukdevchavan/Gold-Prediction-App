@@ -132,7 +132,7 @@ def app_page():
         """
         <style>
         .stApp {
-            background-image: url('https://i.pinimg.com/originals/6b/51/b5/6b51b52544ed291fd617fc2b42a7ec24.jpg');
+            background-image: url('https://img.freepik.com/free-photo/abstract-luxury-gold-yellow-gradient-studio-wall-well-use-as-background-layout-banner-product-presentation_1258-70976.jpg');
             background-size: fit;
             background-position: center;
             padding: 5rem;
