@@ -32,7 +32,7 @@ def login_page():
         """
         <style>
         .stApp {
-            background-image: url('https://png.pngtree.com/thumb_back/fh260/back_our/20190620/ourmid/pngtree-beautiful-technology-website-business-poster-background-template-image_148436.jpg');
+            background-image: url('"C:\Users\SEC\Downloads\img1.jpg"');
             background-size: cover;
             background-position: center;
             padding: 5rem;
@@ -132,7 +132,7 @@ def app_page():
         """
         <style>
         .stApp {
-            background-image: url('https://img.freepik.com/free-photo/abstract-luxury-gold-yellow-gradient-studio-wall-well-use-as-background-layout-banner-product-presentation_1258-70976.jpg');
+            background-image: url('');
             background-size: fit;
             background-position: center;
             padding: 5rem;
