@@ -132,7 +132,7 @@ def app_page():
         """
         <style>
         .stApp {
-            background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fin.pinterest.com%2Fpin%2F262968065726385491%2F&psig=AOvVaw2NzMzXYIUGUlPD2YFNFlWK&ust=1723711854994000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOD746CN9IcDFQAAAAAdAAAAABAE');
+            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yMThiYXRjaDgtbXludC0yMi1qb2I1OTguanBn.jpg');
             background-size: fit;
             background-position: center;
             padding: 5rem;
