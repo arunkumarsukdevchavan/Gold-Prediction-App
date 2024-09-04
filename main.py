@@ -32,7 +32,7 @@ def login_page():
         """
         <style>
         .stApp {
-            background-image: url('https://e1.pxfuel.com/desktop-wallpaper/581/154/desktop-wallpaper-backgrounds-for-login-page-login-page.jpg');
+            background-image: url('https://img.freepik.com/free-vector/abstract-geometric-wireframe-background_52683-59421.jpg');
             background-size: cover;
             background-position: center;
             padding: 5rem;
