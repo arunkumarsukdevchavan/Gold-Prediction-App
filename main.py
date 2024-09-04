@@ -64,7 +64,7 @@ def login_page():
         }
         .login-button {
             background-color: #4CAF50;
-            color: #ffffff;
+            color: #000000;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
