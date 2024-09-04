@@ -32,37 +32,57 @@ def login_page():
         """
         <style>
         .stApp {
-            background-image: url('https://e1.pxfuel.com/desktop-wallpaper/581/154/desktop-wallpaper-backgrounds-for-login-page-login-page.jpg');
+            background-image: url('https://getwallpapers.com/wallpaper/full/b/e/0/1183587-gold-background-wallpaper-1920x1080-hd-for-mobile.jpg');
             background-size: cover;
             background-position: center;
             padding: 5rem;
             border-radius: 10px;
-            color: #f5f5f5; /* Text color for better visibility on wallpaper */
+            color: #ffffff; /* Text color for better visibility on wallpaper */
             background-size: 100% 100%;
         }
         .login-form {
-            max-width: 300px;
+            max-width: 400px;
             margin: 40px auto;
             padding: 30px;
-            background-color: #f5f5f5;
+            background-color: #f9f9f9;
             border: 1px solid #ccc;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             text-align: center;
         }
+        .login-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .login-input {
+            margin-bottom: 20px;
+        }
+        .login-button {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-button:hover {
+            background-color: #3e8e41;
+        }
         </style>
         """,
         unsafe_allow_html=True
     )
-    st.markdown("<h1 style='color: white;'>Login Page</h1>", unsafe_allow_html=True)
 
-    st.markdown("<p style='color: white;'>Username</p>", unsafe_allow_html=True)
-    st.session_state.username = st.text_input("")
+    st.markdown("<h1 class='login-header'>Login Page</h1>", unsafe_allow_html=True)
 
-    st.markdown("<p style='color: white;'>Password</p>", unsafe_allow_html=True)
-    st.session_state.password = st.text_input("", type="password")
+    st.markdown("<p class='login-input'>Username:</p>", unsafe_allow_html=True)
+    st.session_state.username = st.text_input("", key="username")
 
-    if st.button("Login"):
+    st.markdown("<p class='login-input'>Password:</p>", unsafe_allow_html=True)
+    st.session_state.password = st.text_input("", type="password", key="password")
+
+    if st.button("Login", key="login_button"):
         login()
 
     if 'login_error' in st.session_state:
