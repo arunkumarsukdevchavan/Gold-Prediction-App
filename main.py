@@ -36,7 +36,7 @@ def login_page():
         """
         <style>
         .stApp {
-            background-image: url('https://getwallpapers.com/wallpaper/full/b/e/0/1183587-gold-background-wallpaper-1920x1080-hd-for-mobile.jpg');
+            background-image: url('https://e1.pxfuel.com/desktop-wallpaper/581/154/desktop-wallpaper-backgrounds-for-login-page-login-page.jpg');
             background-size: cover;
             background-position: center;
             padding: 5rem;
