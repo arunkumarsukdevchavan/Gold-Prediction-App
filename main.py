@@ -51,7 +51,7 @@ def login_page():
             text-align: center;
         }
         .stApp h1 {
-              color: #ffffff; /* Black for title */
+              color: #f5f5f5; /* Black for title */
           }
           .login-form label {
               color: #ffffff; /* Dark gray for labels */
