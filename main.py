@@ -71,7 +71,7 @@ def login_page():
             cursor: pointer;
         }
         .login-button:hover {
-            background-color: #3e8e41;
+            background-color: #000000;
         }
         </style>
         """,
