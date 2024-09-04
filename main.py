@@ -37,7 +37,7 @@ def login_page():
             background-position: center;
             padding: 5rem;
             border-radius: 10px;
-            color: #ffffff; /* Text color for better visibility on wallpaper */
+            color: #f5f5f5; /* Text color for better visibility on wallpaper */
             background-size: 100% 100%;
         }
         .login-form {
