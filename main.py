@@ -50,19 +50,7 @@ def login_page():
             border-radius: 10px;
             text-align: center;
         }
-        .stApp h1 {
-              color: #f5f5f5; /* Black for title */
-          }
-          .login-form label {
-              color: #f5f5f5; /* Dark gray for labels */
-          }
-          .login-form input[type="text"],
-          .login-form input[type="password"] {
-              color: #f5f5f5; /* Black for input text */
-          }
-          .login-form button {
-              color: #f5f5f5; /* White for button text */
-          }
+       
 
         </style>
         """,
