@@ -27,6 +27,10 @@ def logout():
     st.session_state.logged_in = False
 
 # Login page
+def logout():
+    st.session_state.logged_in = False
+
+# Login page
 def login_page():
     st.markdown(
         """
@@ -41,7 +45,7 @@ def login_page():
             background-size: 100% 100%;
         }
         .login-form {
-            max-width: 400px;
+            max-width: 300px;
             margin: 40px auto;
             padding: 30px;
             background-color: #f9f9f9;
@@ -50,43 +54,22 @@ def login_page():
             border-radius: 10px;
             text-align: center;
         }
-        .login-header {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .login-input {
-            margin-bottom: 20px;
-        }
-        .login-button {
-            background-color: #4CAF50;
-            color: #ffffff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .login-button:hover {
-            background-color: #3e8e41;
-        }
         </style>
         """,
         unsafe_allow_html=True
     )
 
-    st.markdown("<h1 class='login-header'>Login Page</h1>", unsafe_allow_html=True)
+    st.title("Login Page")
 
-    st.markdown("<p class='login-input'>Username:</p>", unsafe_allow_html=True)
-    st.session_state.username = st.text_input("", key="username")
+    st.session_state.username = st.text_input("Username")
+    st.session_state.password = st.text_input("Password", type="password")
 
-    st.markdown("<p class='login-input'>Password:</p>", unsafe_allow_html=True)
-    st.session_state.password = st.text_input("", type="password", key="password")
-
-    if st.button("Login", key="login_button"):
+    if st.button("Login"):
         login()
 
     if 'login_error' in st.session_state:
         st.error(st.session_state.login_error)
+
 
 # Data processing and model training function
 def process_and_train(gold_prices, economic_data):
