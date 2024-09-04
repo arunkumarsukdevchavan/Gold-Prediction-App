@@ -57,7 +57,7 @@ def login_page():
 
     st.title("Login Page")
 
-    st.session_state.username = st.text_input("Username",color="white")
+    st.session_state.username = st.text_input("Username")
     st.session_state.password = st.text_input("Password", type="password")
 
     if st.button("Login"):
