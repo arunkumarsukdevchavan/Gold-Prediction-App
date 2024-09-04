@@ -54,9 +54,6 @@ def login_page():
         """,
         unsafe_allow_html=True
     )
-    .stApp h1 {
-  color: #f5f5f5;  /* Lighter shade of white */
-    }
     st.title("Login Page")
 
     st.session_state.username = st.text_input("Username")
