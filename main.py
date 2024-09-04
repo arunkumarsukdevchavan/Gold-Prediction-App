@@ -178,7 +178,7 @@ def app_page():
     st.write("Welcome to the app!")
 
     # Add two CSV file uploaders
-    st.header("Upload CSV files")
+    st.write("Upload CSV files")
     uploaded_file1 = st.file_uploader("Select gold price CSV file", type=["csv"], key="file1")
     uploaded_file2 = st.file_uploader("Select economic data CSV file", type=["csv"], key="file2")
 
