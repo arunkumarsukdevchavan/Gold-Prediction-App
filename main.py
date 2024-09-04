@@ -78,13 +78,13 @@ def login_page():
         unsafe_allow_html=True
     )
 
-    st.markdown("<h1 class='login-header'>Login Page</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='color: white;'>Login Page</h1>", unsafe_allow_html=True)
 
-    st.markdown("<p class='login-input'>Username:</p>", unsafe_allow_html=True)
-    st.session_state.username = st.text_input("", key="username")
+    st.markdown("<p style='color: white;'>Username</p>", unsafe_allow_html=True)
+    st.session_state.username = st.text_input("")
 
-    st.markdown("<p class='login-input'>Password:</p>", unsafe_allow_html=True)
-    st.session_state.password = st.text_input("", type="password", key="password")
+    st.markdown("<p style='color: white;'>Password</p>", unsafe_allow_html=True)
+    st.session_state.password = st.text_input("", type="password")
 
     if st.button("Login", key="login_button"):
         login()
