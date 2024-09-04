@@ -45,7 +45,7 @@ def login_page():
             background-size: 100% 100%;
         }
         .login-form {
-            max-width: 300px;
+            max-width: 400px;
             margin: 40px auto;
             padding: 30px;
             background-color: #f9f9f9;
@@ -54,21 +54,39 @@ def login_page():
             border-radius: 10px;
             text-align: center;
         }
+        .login-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .login-input {
+            margin-bottom: 20px;
+        }
+        .login-button {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-button:hover {
+            background-color: #3e8e41;
+        }
         </style>
         """,
         unsafe_allow_html=True
     )
 
-    st.markdown("<h1 style='color: white;'>Login Page</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 class='login-header'>Login Page</h1>", unsafe_allow_html=True)
 
-    st.markdown("<p style='color: white;'>Username</p>", unsafe_allow_html=True)
-    st.session_state.username = st.text_input("")
+    st.markdown("<p class='login-input'>Username:</p>", unsafe_allow_html=True)
+    st.session_state.username = st.text_input("", key="username")
 
-    st.markdown("<p style='color: white;'>Password</p>", unsafe_allow_html=True)
-    st.session_state.password = st.text_input("", type="password")
+    st.markdown("<p class='login-input'>Password:</p>", unsafe_allow_html=True)
+    st.session_state.password = st.text_input("", type="password", key="password")
 
-
-    if st.button("Login"):
+    if st.button("Login", key="login_button"):
         login()
 
     if 'login_error' in st.session_state:
