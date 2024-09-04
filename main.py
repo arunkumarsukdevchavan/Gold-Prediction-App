@@ -54,14 +54,14 @@ def login_page():
               color: #f5f5f5; /* Black for title */
           }
           .login-form label {
-              color: #ffffff; /* Dark gray for labels */
+              color: #f5f5f5; /* Dark gray for labels */
           }
           .login-form input[type="text"],
           .login-form input[type="password"] {
-              color: #ffffff; /* Black for input text */
+              color: #f5f5f5; /* Black for input text */
           }
           .login-form button {
-              color: #000000; /* White for button text */
+              color: #f5f5f5; /* White for button text */
           }
 
         </style>
