@@ -173,7 +173,8 @@ def app_page():
         """,
         unsafe_allow_html=True
     )
-
+    st.markdown("<h1 style='color: white;'>Login Page</h1>", unsafe_allow_html=True)
+    
     st.title("Gold Predicton App")
     st.write("Welcome to the app!")
 
