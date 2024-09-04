@@ -152,6 +152,7 @@ def process_and_train(gold_prices, economic_data):
     future_economic_data = np.array([[future_Inflation_Rate, future_Unemployment_Rate, future_GDP, future_Applied]])
     future_gold_price = model.predict(future_economic_data)
     st.header(f'Predicted Gold Price: {future_gold_price[0]}')
+    st.markdown("<h1 style='color: black;'>Predicted Gold Price: {future_gold_price[0]}</h1>", unsafe_allow_html=True)
 
 # Main application page
 def app_page():
