@@ -81,10 +81,10 @@ def login_page():
     st.markdown("<h1 style='color: white;'>Login Page</h1>", unsafe_allow_html=True)
 
     st.markdown("<p style='color: white;'>Username</p>", unsafe_allow_html=True)
-    st.session_state.username = st.text_input("")
+    st.session_state.username = st.text_input("", key="username", placeholder="Enter username")
 
     st.markdown("<p style='color: white;'>Password</p>", unsafe_allow_html=True)
-    st.session_state.password = st.text_input("", type="password")
+    st.session_state.password = st.text_input("", type="password", key="password", placeholder="Enter password")
 
     if st.button("Login", key="login_button"):
         login()
