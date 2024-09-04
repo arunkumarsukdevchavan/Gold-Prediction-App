@@ -159,7 +159,7 @@ def app_page():
         """
         <style>
         .stApp {
-            background-image: url('https://api.deepai.org/job-view-file/778477cf-1da2-4329-a340-2d8654190053/outputs/output.jpg?art-image=true');
+            background-image: url('https://t4.ftcdn.net/jpg/03/09/30/11/360_F_309301133_FeVFkJxwrgZmjSWQ0HWEu1nF3l6ZMCqS.jpg');
             background-size: fit;
             background-position: center;
             padding: 5rem;
