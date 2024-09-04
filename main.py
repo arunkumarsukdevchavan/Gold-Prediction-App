@@ -44,7 +44,7 @@ def login_page():
             max-width: 300px;
             margin: 40px auto;
             padding: 30px;
-            background-color: #f9f9f9;
+            background-color: #f5f5f5;
             border: 1px solid #ccc;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
