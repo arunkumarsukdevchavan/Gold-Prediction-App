@@ -50,7 +50,15 @@ def login_page():
             border-radius: 10px;
             text-align: center;
         }
-       
+       .stTextInput label {
+            color: white;
+        }
+        .stTextInput input {
+            color: white;
+        }
+        .stButton button {
+            color: white;
+        }
 
         </style>
         """,
