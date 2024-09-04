@@ -58,10 +58,10 @@ def login_page():
           }
           .login-form input[type="text"],
           .login-form input[type="password"] {
-              color: #000000; /* Black for input text */
+              color: #ffffff; /* Black for input text */
           }
           .login-form button {
-              color: #ffffff; /* White for button text */
+              color: #000000; /* White for button text */
           }
 
         </style>
