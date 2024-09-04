@@ -132,7 +132,6 @@ def app_page():
         """
         <style>
         .stApp {
-            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yMThiYXRjaDgtbXludC0yMi1qb2I1OTguanBn.jpg');
             background-size: fit;
             background-position: center;
             padding: 5rem;
