@@ -2,7 +2,10 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 import matplotlib.pyplot as plt
@@ -27,10 +30,6 @@ def logout():
     st.session_state.logged_in = False
 
 # Login page
-def logout():
-    st.session_state.logged_in = False
-
-# Login page
 def login_page():
     st.markdown(
         """
@@ -41,37 +40,8 @@ def login_page():
             background-position: center;
             padding: 5rem;
             border-radius: 10px;
-            color: #ffffff; /* Text color for better visibility on wallpaper */
+            color: #ffffff;
             background-size: 100% 100%;
-        }
-        .login-form {
-            max-width: 400px;
-            margin: 40px auto;
-            padding: 30px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            text-align: center;
-        }
-        .login-header {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .login-input {
-            margin-bottom: 20px;
-        }
-        .login-button {
-            background-color: #4CAF50;
-            color: #000000;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .login-button:hover {
-            background-color: #000000;
         }
         </style>
         """,
@@ -80,18 +50,14 @@ def login_page():
 
     st.markdown("<h1 style='color: white;'>Login Page</h1>", unsafe_allow_html=True)
 
-    st.markdown("<p style='color: white;'>Username</p>", unsafe_allow_html=True)
-    st.session_state.username = st.text_input("")
+    st.session_state.username = st.text_input("Username")
+    st.session_state.password = st.text_input("Password", type="password")
 
-    st.markdown("<p style='color: white;'>Password</p>", unsafe_allow_html=True)
-    st.session_state.password = st.text_input("",type="password")
-
-    if st.button("Login", key="login_button"):
+    if st.button("Login"):
         login()
 
     if 'login_error' in st.session_state:
         st.error(st.session_state.login_error)
-
 
 # Data processing and model training function
 def process_and_train(gold_prices, economic_data):
@@ -113,7 +79,8 @@ def process_and_train(gold_prices, economic_data):
     data['Inflation Rate '] = label_encoder.fit_transform(data['Inflation Rate '])
 
     scaler = StandardScaler()
-    data[['Inflation Rate ', 'Unemployment Rate', 'GDP', 'Applied']] = scaler.fit_transform(data[['Inflation Rate ', 'Unemployment Rate', 'GDP', 'Applied']])
+    data[['Inflation Rate ', 'Unemployment Rate', 'GDP', 'Applied']] = scaler.fit_transform(
+        data[['Inflation Rate ', 'Unemployment Rate', 'GDP', 'Applied']])
 
     # Define features and target
     features = ['Inflation Rate ', 'Unemployment Rate', 'GDP', 'Applied']
@@ -123,35 +90,47 @@ def process_and_train(gold_prices, economic_data):
     # Split data into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # Train RandomForestRegressor model
-    model = RandomForestRegressor(n_estimators=100, random_state=42)
-    model.fit(X_train, y_train)
+    # Define models
+    models = {
+        'Linear Regression': LinearRegression(),
+        'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
+        'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42),
+        'Decision Tree': DecisionTreeRegressor(random_state=42),
+        'K-Nearest Neighbors': KNeighborsRegressor(n_neighbors=5)
+    }
 
-    # Predict on test set
-    y_pred = model.predict(X_test)
+    # Dictionary to store R² scores
+    r2_scores = {}
 
-    # Evaluate model performance
-    mae = mean_absolute_error(y_test, y_pred)
-    mse = mean_squared_error(y_test, y_pred)
-    r2 = r2_score(y_test, y_pred)
+    # Train each model and calculate R² scores
+    for model_name, model in models.items():
+        model.fit(X_train, y_train)
+        y_pred = model.predict(X_test)
+        r2 = r2_score(y_test, y_pred)
+        r2_scores[model_name] = r2
 
-    # Plot actual vs. predicted gold prices
-    plt.figure(figsize=(14, 7))
-    plt.plot(data['Date'], y, label='Actual Gold Prices')
-    plt.plot(data['Date'].iloc[y_test.index], y_pred, label='Predicted Gold Prices', linestyle='-')
-    plt.xlabel('Date')
-    plt.ylabel('Gold Price')
-    plt.legend()
+    # Display R² scores for each model
+    st.write("## Model R² Scores")
+    for model_name, r2 in r2_scores.items():
+        st.write(f"{model_name}: R² Score = {r2:.2f}")
 
-    future_Inflation_Rate = st.number_input("Enter future inflation rate")
-    future_Unemployment_Rate = st.number_input("Enter future Unemployment Rate")
-    future_GDP = st.number_input("Enter future GDP")
-    future_Applied = st.number_input("Enter future Tariff Rate")
+    # Inputs for future predictions
+    st.write("### Enter Future Economic Data for Prediction:")
+    future_Inflation_Rate = st.number_input("Future Inflation Rate", format="%.2f")
+    future_Unemployment_Rate = st.number_input("Future Unemployment Rate", format="%.2f")
+    future_GDP = st.number_input("Future GDP", format="%.2f")
+    future_Applied = st.number_input("Future Applied Rate", format="%.2f")
 
-    # Predict future gold price based on new economic data
-    future_economic_data = np.array([[future_Inflation_Rate, future_Unemployment_Rate, future_GDP, future_Applied]])
-    future_gold_price = model.predict(future_economic_data)
-    st.header(f'Predicted Gold Price: {future_gold_price[0]}')
+    if st.button("Predict Future Gold Price"):
+        # Prepare future data for prediction
+        future_economic_data = np.array([[future_Inflation_Rate, future_Unemployment_Rate, future_GDP, future_Applied]])
+        future_economic_data_scaled = scaler.transform(future_economic_data)
+
+        # Display future predictions for each model
+        st.write("## Future Gold Price Predictions")
+        for model_name, model in models.items():
+            future_gold_price = model.predict(future_economic_data_scaled)
+            st.write(f"{model_name}: Predicted Future Gold Price = {future_gold_price[0]:.2f}")
 
 # Main application page
 def app_page():
@@ -164,16 +143,14 @@ def app_page():
             background-position: center;
             padding: 5rem;
             border-radius: 10px;
-            color: #ffffff; /* Text color for better visibility on wallpaper */
+            color: #ffffff;
             background-size: 100% 100%;
-        }
-        
         }
         </style>
         """,
         unsafe_allow_html=True
     )
-    st.markdown("<h1 style='color: black;'>Gold Predicton App</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='color: black;'>Gold Prediction App</h1>", unsafe_allow_html=True)
     st.header("Welcome to the app!")
 
     # Add two CSV file uploaders
