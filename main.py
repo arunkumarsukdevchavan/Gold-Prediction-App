@@ -43,6 +43,15 @@ def login_page():
             color: #ffffff;
             background-size: 100% 100%;
         }
+        .login-input label {
+            color: white !important;
+            font-size: 1.2rem; /* Increase font size */
+        }
+        .stTextInput input {
+            color: white !important;
+            font-size: 1.1rem; /* Increase input font size */
+            background-color: transparent !important; /* Make background transparent */
+        }
         </style>
         """,
         unsafe_allow_html=True
@@ -50,10 +59,15 @@ def login_page():
 
     st.markdown("<h1 style='color: white;'>Login Page</h1>", unsafe_allow_html=True)
 
-    st.session_state.username = st.text_input("Username")
-    st.session_state.password = st.text_input("Password", type="password")
+    # Username input
+    st.markdown("<label style='color: white; font-size: 1.5rem;'>Username</label>", unsafe_allow_html=True)
+    st.session_state.username = st.text_input("", key="username")
 
-    if st.button("Login"):
+    # Password input
+    st.markdown("<label style='color: white; font-size: 1.5rem;'>Password</label>", unsafe_allow_html=True)
+    st.session_state.password = st.text_input("", type="password", key="password")
+
+    if st.button("Login", key="login_button"):
         login()
 
     if 'login_error' in st.session_state:
@@ -92,6 +106,7 @@ def process_and_train(gold_prices, economic_data):
 
     # Define models
     models = {
+        'Linear Regression': LinearRegression(),
         'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
         'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42),
         'Decision Tree': DecisionTreeRegressor(random_state=42),
