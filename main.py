@@ -92,7 +92,6 @@ def process_and_train(gold_prices, economic_data):
 
     # Define models
     models = {
-        'Linear Regression': LinearRegression(),
         'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
         'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42),
         'Decision Tree': DecisionTreeRegressor(random_state=42),
