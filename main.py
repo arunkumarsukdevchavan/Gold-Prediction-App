@@ -92,8 +92,7 @@ def process_and_train(gold_prices, economic_data):
     models = {
         'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
         'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42),
-        'Decision Tree': DecisionTreeRegressor(random_state=42),
-        'K-Nearest Neighbors': KNeighborsRegressor(n_neighbors=5)
+        'Decision Tree': DecisionTreeRegressor(random_state=42)
     }
 
     # Dictionary to store R² scores
@@ -170,4 +169,4 @@ def app_page():
 if st.session_state.logged_in:
     app_page()
 else:
-    login_page()
+    login_page()
