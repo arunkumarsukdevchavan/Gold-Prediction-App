@@ -108,7 +108,7 @@ def process_and_train(gold_prices, economic_data):
     # Display R² scores for each model
     st.write("## Model R² Scores")
     for model_name, r2 in r2_scores.items():
-        st.write(f"{model_name}: R² Score = {r2:.2f}")
+        st.write(f"{model_name}: R² Score = {r2:.4f}")
 
     # Inputs for future predictions
     st.write("### Enter Future Economic Data for Prediction:")
