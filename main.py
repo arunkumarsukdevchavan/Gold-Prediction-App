@@ -110,13 +110,19 @@ def process_and_train(gold_prices, economic_data):
     for model_name, r2 in r2_scores.items():
         st.write(f"{model_name}: R² Score = {r2:.4f}")
 
-    # Plot comparison of models
+    # Plot comparison of models with R² values on the bars
     st.write("## Model Comparison Plot")
     model_names = list(r2_scores.keys())
     r2_values = list(r2_scores.values())
 
     fig, ax = plt.subplots()
-    ax.barh(model_names, r2_values, color=['#ff9999', '#66b3ff', '#99ff99'])
+    bars = ax.barh(model_names, r2_values, color=['#ff9999', '#66b3ff', '#99ff99'])
+    
+    # Annotate bars with the R² scores
+    for bar in bars:
+        width = bar.get_width()
+        ax.text(width + 0.01, bar.get_y() + bar.get_height() / 2, f'{width:.4f}', va='center')
+
     ax.set_xlabel('R² Score')
     ax.set_title('Comparison of R² Scores by Model')
 
