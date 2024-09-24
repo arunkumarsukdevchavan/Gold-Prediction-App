@@ -4,10 +4,10 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 import matplotlib.pyplot as plt
-import xgboost as xgb  # Import XGBoost
 
 # Initialize session state
 if 'logged_in' not in st.session_state:
@@ -94,7 +94,7 @@ def process_and_train(gold_prices, economic_data):
         'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
         'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42),
         'Decision Tree': DecisionTreeRegressor(random_state=42),
-        'XGBoost': xgb.XGBRegressor(n_estimators=100, random_state=42)  # Replaced KNN with XGBoost
+        'K-Nearest Neighbors': KNeighborsRegressor(n_neighbors=5)
     }
 
     # Dictionary to store R² scores
@@ -171,4 +171,4 @@ def app_page():
 if st.session_state.logged_in:
     app_page()
 else:
-    login_page()
+    login_page()
