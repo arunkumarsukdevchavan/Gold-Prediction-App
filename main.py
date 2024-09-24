@@ -110,21 +110,35 @@ def process_and_train(gold_prices, economic_data):
     for model_name, r2 in r2_scores.items():
         st.write(f"{model_name}: R² Score = {r2:.4f}")
 
-    # Plot comparison of models with R² values on the bars
+    # Plot advanced comparison of models with R² values on the bars
     st.write("## Model Comparison Plot")
     model_names = list(r2_scores.keys())
     r2_values = list(r2_scores.values())
 
-    fig, ax = plt.subplots()
-    bars = ax.barh(model_names, r2_values, color=['#ff9999', '#66b3ff', '#99ff99'])
-    
+    # Create a figure and axis for the plot
+    fig, ax = plt.subplots(figsize=(8, 6))
+
+    # Define colors and create the bar chart
+    bar_colors = ['#ff9999', '#66b3ff', '#99ff99']
+    bars = ax.bar(model_names, r2_values, color=bar_colors)
+
+    # Add a grid for clarity
+    ax.grid(True, axis='y', linestyle='--', alpha=0.7)
+
     # Annotate bars with the R² scores
     for bar in bars:
-        width = bar.get_width()
-        ax.text(width + 0.01, bar.get_y() + bar.get_height() / 2, f'{width:.4f}', va='center')
+        height = bar.get_height()
+        ax.text(bar.get_x() + bar.get_width() / 2, height + 0.01, f'{height:.4f}', ha='center', va='bottom', fontsize=12, fontweight='bold')
 
-    ax.set_xlabel('R² Score')
-    ax.set_title('Comparison of R² Scores by Model')
+    # Customize axis labels and title
+    ax.set_xlabel('Model', fontsize=14, fontweight='bold')
+    ax.set_ylabel('R² Score', fontsize=14, fontweight='bold')
+    ax.set_title('Comparison of R² Scores by Model', fontsize=16, fontweight='bold')
+
+    # Customize ticks and axis
+    ax.set_xticks(np.arange(len(model_names)))
+    ax.set_xticklabels(model_names, fontsize=12, rotation=45, ha='right')
+    ax.set_yticks(np.arange(0, 1.1, 0.1))  # Adjust Y-axis to better visualize R² scores
 
     # Display the plot in Streamlit
     st.pyplot(fig)
