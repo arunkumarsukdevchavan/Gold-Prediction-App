@@ -2,8 +2,10 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 import matplotlib.pyplot as plt
@@ -90,9 +92,11 @@ def process_and_train(gold_prices, economic_data):
 
     # Define models
     models = {
+        'Linear Regression': LinearRegression(),
         'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
         'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42),
-        'Decision Tree': DecisionTreeRegressor(random_state=42)
+        'Decision Tree': DecisionTreeRegressor(random_state=42),
+        'K-Nearest Neighbors': KNeighborsRegressor(n_neighbors=5)
     }
 
     # Dictionary to store R² scores
@@ -108,7 +112,7 @@ def process_and_train(gold_prices, economic_data):
     # Display R² scores for each model
     st.write("## Model R² Scores")
     for model_name, r2 in r2_scores.items():
-        st.write(f"{model_name}: R² Score = {r2:.4f}")
+        st.write(f"{model_name}: R² Score = {r2:.2f}")
 
     # Inputs for future predictions
     st.write("### Enter Future Economic Data for Prediction:")
@@ -169,4 +173,4 @@ def app_page():
 if st.session_state.logged_in:
     app_page()
 else:
-    login_page()
+    login_page()
