@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.neighbors import KNeighborsRegressor
@@ -91,6 +92,7 @@ def process_and_train(gold_prices, economic_data):
 
     # Define models
     models = {
+        'Linear Regression': LinearRegression(),
         'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
         'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42),
         'Decision Tree': DecisionTreeRegressor(random_state=42),
@@ -171,4 +173,4 @@ def app_page():
 if st.session_state.logged_in:
     app_page()
 else:
-    login_page()
+    login_page()
