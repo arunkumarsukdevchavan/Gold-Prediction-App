@@ -30,32 +30,60 @@ def logout():
 # Login page
 def login_page():
     st.markdown(
-        """
+        f"""
         <style>
-        .stApp {
-            background-image: url('https://e1.pxfuel.com/desktop-wallpaper/581/154/desktop-wallpaper-backgrounds-for-login-page-login-page.jpg');
+        .stApp {{
+            background-image: url('/mnt/data/ec2c3956d585150636769e2821cca505.jpg');
             background-size: cover;
             background-position: center;
-            padding: 5rem;
+        }}
+        .login-container {{
+            max-width: 400px;
+            margin: auto;
+            padding: 3rem;
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
-            color: #ffffff;
-            background-size: 100% 100%;
-        }
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }}
+        .login-button {{
+            background-color: #FF007F;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }}
+        .login-button:hover {{
+            background-color: #FF33A1;
+        }}
+        .title {{
+            text-align: center;
+            font-size: 1.8rem;
+            color: #4A4A4A;
+        }}
+        .error {{
+            color: red;
+            text-align: center;
+        }}
         </style>
         """,
         unsafe_allow_html=True
     )
 
-    st.markdown("<h1 style='color: white;'>Login Page</h1>", unsafe_allow_html=True)
+    st.markdown("<div class='login-container'>", unsafe_allow_html=True)
+    st.markdown("<h2 class='title'>Login</h2>", unsafe_allow_html=True)
 
     st.session_state.username = st.text_input("Username")
     st.session_state.password = st.text_input("Password", type="password")
 
-    if st.button("Login"):
+    if st.button("Login", key="login", help="Click to login"):
         login()
 
     if 'login_error' in st.session_state:
-        st.error(st.session_state.login_error)
+        st.markdown(f"<div class='error'>{st.session_state.login_error}</div>", unsafe_allow_html=True)
+
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # Data processing and model training function
 def process_and_train(gold_prices, economic_data):
@@ -185,21 +213,4 @@ def app_page():
     # Add two CSV file uploaders
     st.write("Upload CSV files")
     uploaded_file1 = st.file_uploader("Select gold price CSV file", type=["csv"], key="file1")
-    uploaded_file2 = st.file_uploader("Select economic data CSV file", type=["csv"], key="file2")
-
-    if uploaded_file1 is not None and uploaded_file2 is not None:
-        # Read the uploaded CSV files
-        gold_prices = pd.read_csv(uploaded_file1)
-        economic_data = pd.read_csv(uploaded_file2)
-
-        # Process data and train the model
-        process_and_train(gold_prices, economic_data)
-
-    if st.button("Logout"):
-        logout()
-
-# Display appropriate page
-if st.session_state.logged_in:
-    app_page()
-else:
-    login_page()
+   
