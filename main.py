@@ -202,4 +202,4 @@ def app_page():
 if st.session_state.logged_in:
     app_page()
 else:
-    login_page()
+    login_page()
