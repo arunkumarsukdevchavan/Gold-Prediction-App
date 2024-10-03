@@ -68,20 +68,20 @@ def process_and_train(gold_prices, economic_data):
 
     # Fill missing values with the mean
     data['Inflation Rate '].fillna(data['Inflation Rate '].mean(), inplace=True)
-    data['Unemployment Rate'].fillna(data['Unemployment Rate'].mean(), inplace=True)
+    data['Interest Rate'].fillna(data['Interest Rate'].mean(), inplace=True)
     data['GDP'].fillna(data['GDP'].mean(), inplace=True)
-    data['Applied'].fillna(data['Applied'].mean(), inplace=True)
+    data['Tariff Rate'].fillna(data['Tariff Rate'].mean(), inplace=True)
 
     # Encode and scale features
     label_encoder = LabelEncoder()
     data['Inflation Rate '] = label_encoder.fit_transform(data['Inflation Rate '])
 
     scaler = StandardScaler()
-    data[['Inflation Rate ', 'Unemployment Rate', 'GDP', 'Applied']] = scaler.fit_transform(
-        data[['Inflation Rate ', 'Unemployment Rate', 'GDP', 'Applied']])
+    data[['Inflation Rate ', 'Interest Rate', 'GDP', 'Tariff Rate']] = scaler.fit_transform(
+        data[['Inflation Rate ', 'Interest Rate', 'GDP', 'Tariff Rate']])
 
     # Define features and target
-    features = ['Inflation Rate ', 'Unemployment Rate', 'GDP', 'Applied']
+    features = ['Inflation Rate ', 'Interest Rate', 'GDP', 'Tariff Rate']
     X = data[features]
     y = data['Average Closing Price']
 
