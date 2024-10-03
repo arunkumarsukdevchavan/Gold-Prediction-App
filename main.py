@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.metrics import r2_score
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 import matplotlib.pyplot as plt
 
@@ -92,7 +92,7 @@ def process_and_train(gold_prices, economic_data):
     models = {
         'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
         'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42),
-        'Decision Tree': DecisionTreeRegressor(random_state=42)
+        'Decision Tree': DecisionTreeRegressor(random_state=42),
     }
 
     # Dictionary to store R² scores
@@ -109,6 +109,39 @@ def process_and_train(gold_prices, economic_data):
     st.write("## Model R² Scores")
     for model_name, r2 in r2_scores.items():
         st.write(f"{model_name}: R² Score = {r2:.4f}")
+
+    # Plot advanced comparison of models with R² values on the bars
+    st.write("## Model Comparison Plot")
+    model_names = list(r2_scores.keys())
+    r2_values = list(r2_scores.values())
+
+    # Create a figure and axis for the plot
+    fig, ax = plt.subplots(figsize=(8, 6))
+
+    # Define colors and create the bar chart
+    bar_colors = ['#ff9999', '#66b3ff', '#99ff99']
+    bars = ax.bar(model_names, r2_values, color=bar_colors)
+
+    # Add a grid for clarity
+    ax.grid(True, axis='y', linestyle='--', alpha=0.7)
+
+    # Annotate bars with the R² scores
+    for bar in bars:
+        height = bar.get_height()
+        ax.text(bar.get_x() + bar.get_width() / 2, height + 0.01, f'{height:.4f}', ha='center', va='bottom', fontsize=12, fontweight='bold')
+
+    # Customize axis labels and title
+    ax.set_xlabel('Model', fontsize=14, fontweight='bold')
+    ax.set_ylabel('R² Score', fontsize=14, fontweight='bold')
+    ax.set_title('Comparison of R² Scores by Model', fontsize=16, fontweight='bold')
+
+    # Customize ticks and axis
+    ax.set_xticks(np.arange(len(model_names)))
+    ax.set_xticklabels(model_names, fontsize=12, rotation=45, ha='right')
+    ax.set_yticks(np.arange(0, 1.1, 0.1))  # Adjust Y-axis to better visualize R² scores
+
+    # Display the plot in Streamlit
+    st.pyplot(fig)
 
     # Inputs for future predictions
     st.write("### Enter Future Economic Data for Prediction:")
