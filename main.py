@@ -146,13 +146,13 @@ def process_and_train(gold_prices, economic_data):
     # Inputs for future predictions
     st.write("### Enter Future Economic Data for Prediction:")
     future_Inflation_Rate = st.number_input("Future Inflation Rate", format="%.2f")
-    future_Unemployment_Rate = st.number_input("Future Unemployment Rate", format="%.2f")
+    future_Interest_Rate = st.number_input("Future Interest Rate", format="%.2f")
     future_GDP = st.number_input("Future GDP", format="%.2f")
     future_Applied = st.number_input("Future Applied Rate", format="%.2f")
 
     if st.button("Predict Future Gold Price"):
         # Prepare future data for prediction
-        future_economic_data = np.array([[future_Inflation_Rate, future_Unemployment_Rate, future_GDP, future_Applied]])
+        future_economic_data = np.array([[future_Inflation_Rate, future_Interest_Rate, future_GDP, future_Applied]])
         future_economic_data_scaled = scaler.transform(future_economic_data)
 
         # Display future predictions for each model
